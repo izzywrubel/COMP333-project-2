@@ -1,0 +1,26 @@
+.form_container {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 12px;
+}
+
+.form_title {
+    border-bottom: 1px solid black;
+}
+
+.form_title_user {
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+}
+
+form {
+    padding-top: 5%;
+}
+
+input {
+    padding: 1px;
+    border-radius: 6px;
+
+}
