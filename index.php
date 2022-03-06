@@ -1,11 +1,5 @@
 <!--
-  COMP 333: Software Engineering
-  Sebastian Zimmeck (szimmeck@wesleyan.edu)
-
-  PHP sample script for querying a database with SQL. This script can be run
-  from inside the htdocs directory in XAMPP. The script assumes that there is a
-  database set up (e.g., via phpMyAdmin) named COMP333_SQL_Tutorial with a
-  student_grades table per the sql_tutorial.md.
+  COMP 333: Isabel Wrubel, Maddie Kurke, Christian Denny
 -->
 
 <!DOCTYPE HTML>
@@ -69,11 +63,6 @@
             $result = mysqli_query($conn, $sql_query);
             $out_value_register = "Successfully registered!";
         }
-        // mysqli_fetch_assoc returns an associative array that corresponds to the
-        // fetched row or NULL if there are no more rows.
-        // Probably does not make much of a difference here, but, e.g., if there are
-        // multiple rows returned, you can iterate over those with a loop.
-        //$row = mysqli_fetch_assoc($result);
       }
       else {
         $out_value_register = "Please complete all required fields.";
@@ -129,6 +118,7 @@
     You can leave the action in the form open
     (https://stackoverflow.com/questions/1131781/is-it-a-good-practice-to-use-an-empty-url-for-a-html-forms-action-attribute-a)
   -->
+  <!-- Form for registration -->
   <div class="form_container">
       <div class="form_title">
         <h1>music-db</h1>
@@ -144,6 +134,7 @@
             }
           ?></p>
           </form>
+    <!-- Form for retrieving songs and ratings -->
     <div class="form_title_user">
         <h2>Retrieve Songs by Username</h2>
     </div>
