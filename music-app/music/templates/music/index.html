@@ -1,32 +1,84 @@
-<h1>Registration</h1>
-    <form action = "" method ="POST">
-        {% csrf_token %}
-        Username: <input type="text" name="user" placeholder="Enter Username" /><br>
-        Password: <input type="text" name="password" placeholder="Enter Password" /><br>
-        <input type="submit" name="submit" value="Register"/>
-    </form>
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <!-- This is the default encoding type for the Html Form post submission.
+  Encoding type tells the browser how the form data should be encoded before
+  sending the form data to the server.
+  https://www.logicbig.com/quick-info/http/application_x-www-form-urlencoded.html-->
+  <meta http-equiv="Content-Type" content="application/x-www-form-urlencoded"/>
+  <link rel="stylesheet" href="...music/templates/music/style.css">
+  <title>Music Database Submission Form using Django</title>
+</head>
 
-<h1>Retrieve Songs by Username</h1>
-    <form action = "" method ="GET">
-        {% csrf_token %}
-        Username: <input type="text" name="user" placeholder="Enter Username" /><br>
-        <input type="submit" name="submit" value="Retrieve"/>
-    </form>
+<body>
+    <div class="form_container">
+        <div class="form_title">
+          <h1>music-db with Django</h1>
+         </div>
+        <h2>Registration</h2>
+            <form action = "" method ="POST">
+                {% csrf_token %}
+                Username: <input type="text" name="user" placeholder="Enter Username" /><br>
+                Password: <input type="text" name="password" placeholder="Enter Password" /><br>
+                <input type="submit" name="submit" value="Register"/>
+                <!-- Django code that retrieves necessary information on the user -->
+                {% if formstatus == 'registration' %}
+                    {% if status == 'success' %}
+                        <p>User successfully registered!</p>
+                    {% elif status == 'error' %}
+                        <p>This userame is already taken, please choose a different one</p>
+                    {% endif %}
+                {% endif %}
+            </form>
 
-{% if formstatus == 'retrieval' %}
-    {% if status == 'success' %}
-        {% for i in print_line %}
-            <p>{{i}}</p>
-        {% endfor %}
-    {% elif status == 'error' %}
-        <p>Sorry, this user hasn't rated any songs yet!</p>
-    {% endif %}
-{% endif %}
+    <div class="form_title_user">
+        <h2>Retrieve Songs by Username</h2>
+    </div>
+        <form action = "" method ="GET">
+            {% csrf_token %}
+            Username: <input type="text" name="user" placeholder="Enter Username" /><br>
+            <input type="submit" name="submit" value="Retrieve"/>
+            <!-- Django code that retrieves necessary information on the user's rating -->
+            {% if formstatus == 'retrieval' %}
+                {% if status == 'success' %}
+                    {% for i in print_line %}
+                        <p>{{i}}</p>
+                    {% endfor %}
+                {% elif status == 'error' %}
+                    <p>Sorry, this user hasn't rated any songs yet!</p>
+                {% endif %}
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
 
-{% if formstatus == 'registration' %}
-    {% if status == 'success' %}
-        <p>User successfully registered!</p>
-    {% elif status == 'error' %}
-        <p>This userame is already taken, please choose a different one</p>
-    {% endif %}
-{% endif %}
+<style>
+    .form_container {
+        width: 50%;
+        margin: auto;
+        text-align: center;
+        border: 1px solid black;
+        border-radius: 12px;
+    }
+
+    .form_title {
+        border-bottom: 1px solid black;
+    }
+
+    .form_title_user {
+        border-bottom: 1px solid black;
+        border-top: 1px solid black;
+    }
+
+    form {
+        padding: 5%;
+    }
+
+    input {
+        margin: 1%;
+        padding: 1px;
+        border-radius: 6px;
+
+    }
+</style>

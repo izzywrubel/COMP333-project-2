@@ -22,6 +22,7 @@ def index(request):
         genre_list = genres.objects.all()
         context['genres'] = genre_list
         context['ratings'] = rating_list
+        # Including our new genres table in the retrieval form to fulfill part Problem 2b
         for r in rating_list:
             if r.username == user:
                 for g in genre_list:
@@ -44,14 +45,15 @@ def index(request):
             if u.username == user:
                 original_user += 1
 
-        # Add to database
+        # Doesn't add the user to the database if it's been seen before
         if original_user > 1:
             context['status'] = 'error'
+        # Adds user to database if it hasn't been seen before
         elif original_user == 0:
             context['status'] = 'success'
             u = users(username = user, password = password)
             u.save()
-
+            
         context['print_line'] = user_rating
         return render(request, 'music/index.html', context)
 
