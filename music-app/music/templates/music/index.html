@@ -1,0 +1,32 @@
+<h1>Registration</h1>
+    <form action = "" method ="POST">
+        {% csrf_token %}
+        Username: <input type="text" name="user" placeholder="Enter Username" /><br>
+        Password: <input type="text" name="password" placeholder="Enter Password" /><br>
+        <input type="submit" name="submit" value="Register"/>
+    </form>
+
+<h1>Retrieve Songs by Username</h1>
+    <form action = "" method ="GET">
+        {% csrf_token %}
+        Username: <input type="text" name="user" placeholder="Enter Username" /><br>
+        <input type="submit" name="submit" value="Retrieve"/>
+    </form>
+
+{% if formstatus == 'retrieval' %}
+    {% if status == 'success' %}
+        {% for i in print_line %}
+            <p>{{i}}</p>
+        {% endfor %}
+    {% elif status == 'error' %}
+        <p>Sorry, this user hasn't rated any songs yet!</p>
+    {% endif %}
+{% endif %}
+
+{% if formstatus == 'registration' %}
+    {% if status == 'success' %}
+        <p>User successfully registered!</p>
+    {% elif status == 'error' %}
+        <p>This userame is already taken, please choose a different one</p>
+    {% endif %}
+{% endif %}
